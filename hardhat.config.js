@@ -1,23 +1,33 @@
-require('@nomiclabs/hardhat-waffle')
-require('@nomiclabs/hardhat-etherscan')
+require("@nomiclabs/hardhat-waffle");
+require("@nomiclabs/hardhat-etherscan");
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
+require('dotenv').config()
+
+const RINKEBY_RPC_URL = process.env.RINKEBY_RPC_URL
+const KOVAN_RPC_URL = process.env.KOVAN_RPC_URL
+const PRIVATE_KEY1 = process.env.PRIVATE_KEY1
+const PRIVATE_KEY2 = process.env.PRIVATE_KEY2
+const PRIVATE_KEY3 = process.env.PRIVATE_KEY3
 module.exports = {
-  defaultNetwork: 'rinkeby',
+  // defaultNetwork: 'rinkeby',
+  defaultNetwork: "hardhat",
   networks: {
+    hardhat: {},
     rinkeby: {
-      url: 'https://eth-rinkeby.alchemyapi.io/v2/nib39M-wdq7B-VOV6fC3Q3ojkJ85GNyj',
-      gas: 2100000, 
+      url: RINKEBY_RPC_URL,
+      gas: 2100000,
       gasPrice: 8000000000,
-      accounts: [
-        '468c3a5d4f5fa32e815365a57283b9fafc9f003095a783ac61a85cc2e3d64143', '4d01a96ad8d5a9b0cac5e5129a52ba2fee0a27472548ca20fdaa6f2e95f659aa',
-        '6fc69d6db087284833ee8ba760c35f113b94afaa86860807f464aaa98d75918a'
-      ],
+      accounts: [PRIVATE_KEY1, PRIVATE_KEY2, PRIVATE_KEY3],
+    },
+    kovan: {
+      url: '',
+      accounts: [PRIVATE_KEY1, PRIVATE_KEY2, PRIVATE_KEY3],
     },
   },
   solidity: {
-    version: '0.8.4',
+    compilers: [{ version: "0.8.4" }, { version: "0.8.7" }, { version: "0.6.0" }],
     settings: {
       optimizer: {
         enabled: true,
@@ -28,6 +38,9 @@ module.exports = {
   etherscan: {
     // Your API key for Etherscan
     // Obtain one at https://etherscan.io/
-    apiKey: '9VINF6ZIZ7X66N8XGHAZENWC5J9BW81HY6',
+    apiKey: "9VINF6ZIZ7X66N8XGHAZENWC5J9BW81HY6",
   },
-}
+  mocha: {
+    timeout: 3000000
+  }
+};
