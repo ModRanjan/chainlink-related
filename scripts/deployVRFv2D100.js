@@ -2,9 +2,9 @@ const hre = require('hardhat')
 // let corecollectionAddress;
 
 async function main() {
-  const VRF = await hre.ethers.getContractFactory('VRFv2D100')
+  const VRF = await hre.ethers.getContractFactory('VRFv2SubscriptionManager')
 
-  const vrf = await VRF.deploy(6846)
+  const vrf = await VRF.deploy()
 
   await vrf.deployed()
   console.log('VRF deployed to:', vrf.address)
