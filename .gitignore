@@ -1,8 +1,10 @@
 # VRF deployed to: 0xF5664b9042008953803d567ddf94eD653195B133
 # VRF deployed to: 0x5FbDB2315678afecb367f032d93F642f64180aa3 Date sunday 26 jun
 /node_modules
-artifacts
-cache
 .env
-contracts/SafeMath.sol
+
+#Hardhat files
 contracts/
+contracts/SafeMath.sol
+cache
+artifacts

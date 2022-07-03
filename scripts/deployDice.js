@@ -1,18 +1,17 @@
-const hre = require('hardhat')
-// let corecollectionAddress;
+const hre = require('hardhat');
 
 async function main() {
-  const DICE = await hre.ethers.getContractFactory('Dice')
+  const DICE = await hre.ethers.getContractFactory('Dice');
 
-  const dice = await DICE.deploy()
+  const dice = await DICE.deploy();
 
-  await dice.deployed()
+  await dice.deployed();
 
-  console.log('Dice contract deployed to:', dice.address)
+  console.log('Dice contract deployed to:', dice.address);
 }
 main()
   .then(() => process.exit(0))
   .catch((error) => {
-    console.error(error)
-    process.exit(1)
-  })
+    console.error(error);
+    process.exit(1);
+  });
