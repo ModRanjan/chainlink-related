@@ -7,14 +7,12 @@ describe('PriceConsumer Unit Tests', async () => {
 
   beforeEach(async () => {
     const price = '200000000000000000000';
-    const PriceConsumerV3 = await ethers.getContractFactory('PriceConsumerV3');
-    priceConsumerV3 = await PriceConsumerV3.deploy(
-      '0x0DCd1Bf9A1b36cE34237eEaFef220932846BCD82'
-    );
-    const MockV3Aggregator = await ethers.getContractFactory(
-      'MockV3Aggregator'
-    );
+
+    const MockV3Aggregator = await ethers.getContractFactory('MockV3Aggregator');
     mockV3Aggregator = await MockV3Aggregator.deploy(18, price);
+
+    const PriceConsumerV3 = await ethers.getContractFactory('PriceConsumerV3');
+    priceConsumerV3 = await PriceConsumerV3.deploy(mockV3Aggregator.address)
   });
 
   describe('constructor', () => {

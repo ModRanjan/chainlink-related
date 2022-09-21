@@ -1,6 +1,12 @@
 # Ignore artifacts:
-build
 node_modules
 artifacts
 cache
 coverage*
+package.json
+img
+.env
+.*
+README.md
+coverage.json
+deployments

@@ -1,18 +1,13 @@
 const { assert, expect } = require('chai');
-const { ethers } = require('hardhat');
+// const { network, deployments, ethers } = require("hardhat")
 
-describe('RandomNumberConsumer Unit Tests', async () => {
+describe('RandomNumberConsumer Unit Tests', async function () {
   let randomNumberConsumerV2;
   let vrfCoordinatorV2Mock;
 
   beforeEach(async () => {
-    // await deployments.fixture(["mocks", "vrf"])
-    vrfCoordinatorV2Mock = await ethers.getContractFactory(
-      'VRFCoordinatorV2Mock'
-    );
-    randomNumberConsumerV2 = await ethers.getContractFactory(
-      'RandomNumberConsumerV2'
-    );
+    vrfCoordinatorV2Mock = await ethers.getContract('VRFCoordinatorV2Mock');
+    randomNumberConsumerV2 = await ethers.getContract('RandomNumberConsumerV2');
   });
 
   it('Should successfully request a random number', async () => {
@@ -49,6 +44,7 @@ describe('RandomNumberConsumer Unit Tests', async () => {
   });
 
   it('Should successfully fire event on callback', async function () {
+    // eslint-disable-next-line no-async-promise-executor
     await new Promise(async (resolve, reject) => {
       randomNumberConsumerV2.once('ReturnedRandomness', async () => {
         console.log('ReturnedRandomness event fired!');
